@@ -12,10 +12,11 @@ public class Enemy : MonoBehaviour
     public Text hpText;
     public int hp;
     public int maxHp;
+    public int atk;
 
-
+    public float attackCooltime;
+    private float attackTimer;
     public float respawnTime;
-    private float deathTimer;
 
     public bool isAlive;
 
@@ -30,13 +31,19 @@ public class Enemy : MonoBehaviour
         {
             UpdateUI();
 
-            if(hp <= 0) Die();
-        }
-        else//(isDead)
-        {
-            // 죽은 뒤 시간을 센다
-            deathTimer += Time.deltaTime;
-            if(deathTimer > respawnTime) Spawn();
+            // 공격 시간간격 확인
+            attackTimer += Time.deltaTime;
+            if(attackTimer > attackCooltime)
+            {
+                RandomAttack();
+                attackTimer = 0;
+            }
+
+            if(hp <= 0) // 죽음ㅠ
+            {
+                Die();
+                StartCoroutine(SpawnIn(respawnTime));
+            }
         }
     }
 
@@ -48,6 +55,16 @@ public class Enemy : MonoBehaviour
             player.SetTarget(this);
     }
 
+    public void RandomAttack()
+    {
+        if(player.GetRandomCharacter() != null) // 무작위 공격
+        {
+            PlayerCharacter randCharacter = player.GetRandomCharacter();
+            randCharacter.Hit(atk);
+            player.cameraScript.ShakeCamera();
+        }
+        else return; // 공격불가
+    }
     public void Hit(int damage)
     {
         if(isAlive)
@@ -65,15 +82,25 @@ public class Enemy : MonoBehaviour
         isAlive = false;
         player.CancelTarget(); // 죽으면 조준 취소
     }
+
+    public IEnumerator SpawnIn(float sec)
+    {
+        float timer = 0f;
+        while(timer < sec)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        Spawn();
+    }
     public void Spawn()
     { 
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         hpText.gameObject.SetActive(true);
 
-        maxHp = (int)Random.Range(player.atk * 2.1f, player.atk * 5.5f);
+        maxHp = (int)Random.Range(player.characters[0].atk * 2.1f, player.characters[0].atk * 5.5f); // 이제 플레이어캐릭이 여럿이라... 
         hp = maxHp;
 
-        deathTimer = 0;
         isAlive = true;
     }
     private void UpdateUI()
