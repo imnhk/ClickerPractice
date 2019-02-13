@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public Player player;
+    public PlayerManager player;
+    public PlayerCharacter targetCharacter;
+    public ParticleSystem particle;
 
     public Text hpText;
     public int hp;
     public int maxHp;
-    public ParticleSystem particle;
+
 
     public float respawnTime;
     private float deathTimer;
@@ -40,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     void OnMouseDown() // 적을 클릭해서 조준. 다시 클릭하면 취소
     {
-        if(player.targetedEnemy==this)
+        if(player.targetEnemy==this)
             player.CancelTarget();
         else if(isAlive) // 살아있어야 조준 가능
             player.SetTarget(this);
@@ -74,7 +76,6 @@ public class Enemy : MonoBehaviour
         deathTimer = 0;
         isAlive = true;
     }
-
     private void UpdateUI()
     {
         hpText.text = "hp: " + hp + " / " + maxHp;

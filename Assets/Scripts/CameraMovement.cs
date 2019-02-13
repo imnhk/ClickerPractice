@@ -22,4 +22,8 @@ public class CameraMovement : MonoBehaviour
         }
         transform.position = originPos;
     }
+    public void ShakeCamera()
+    {
+        StartCoroutine(Shake(0.1f, 0.03f));
+    }
 }
