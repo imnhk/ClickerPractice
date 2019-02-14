@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     public PlayerManager player;
     public ParticleSystem particle;
+
     public Text hpText;
     public Text atkText;
 
@@ -19,15 +20,22 @@ public class PlayerCharacter : MonoBehaviour
     {
         UpdateUI();
         
-        if(hp <= 0) // 죽음ㅠ
-            Die();
+        if(hp <= 0) Die();
+    }
+
+    void OnMouseDown() // 캐릭터를 클릭해서 조준. 다시 클릭하면 취소
+    {
+        if(player.selectedCharacter==this) 
+            player.CancelCharacterSelect(); // 선택 취소
+        else 
+            player.SelectCharacter(this); // 선택
     }
 
     public void Attack()
     {
-        if(player.targetEnemy != null) // 선택 공격
+        if(player.targetedEnemy != null) // 선택 공격
         {
-            player.targetEnemy.Hit(atk);
+            player.targetedEnemy.Hit(atk);
             player.cameraScript.ShakeCamera();
         }
         else if(player.GetRandomEnemy() != null) // 무작위 공격
@@ -57,6 +65,7 @@ public class PlayerCharacter : MonoBehaviour
 
         isAlive = false;
     }
+
     public void Spawn()
     { 
         gameObject.GetComponent<SpriteRenderer>().enabled = true;

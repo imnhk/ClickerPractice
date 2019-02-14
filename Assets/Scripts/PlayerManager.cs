@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public List<PlayerCharacter> characters = new List<PlayerCharacter>();
+    public PlayerCharacter selectedCharacter;
     public List<Enemy> enemies = new List<Enemy>();
-    public Enemy targetEnemy;
+    public Enemy targetedEnemy;
 
     // UI
+    public GameObject selectSprite;
     public GameObject targetSprite;
     public CameraMovement cameraScript;
     public Text goldText;
@@ -25,7 +27,6 @@ public class PlayerManager : MonoBehaviour
     {
         UpdateUI();
 
-        // 부활 카운터
         reviveTimer += Time.deltaTime;
     }
 
@@ -45,39 +46,45 @@ public class PlayerManager : MonoBehaviour
     {
         if(gold >= price)
         {
-            for(int i=0; i<characters.Count; i++)
-                characters[i].atk += atkPerUpgrade; // 캐릭터 셋 다 강화
+            if(selectedCharacter == null) return;
+            selectedCharacter.atk += atkPerUpgrade; // 아무래도 선택한 캐릭터만 강화하는 게 맞는 것 같음.
             gold -= price;
         }
     }
 
     public void Revive()
     {
-        reviveTimer = 0;
-        for(int i=0; i<characters.Count; i++) // 일단 다 살림
-            if(!characters[i].isAlive)
-                characters[i].Spawn();
+        if(!selectedCharacter.isAlive) // 죽어 있어야 살리지
+        {
+            selectedCharacter.Spawn();
+            reviveTimer = 0;
+        }
     }
 
     public Enemy GetRandomEnemy()
     {
         // 살아있는 적 리스트를 만든다
-        List<Enemy> aliveEnemies = new List<Enemy>();
-        for(int i = 0; i<enemies.Count; i++)
-            if(enemies[i].isAlive) 
-                aliveEnemies.Add(enemies[i]);
+        List<Enemy> aliveEnemies = GetAliveEnemiesList();
 
         if(aliveEnemies.Count == 0) // 다 죽어서 못 고를 때
             return null; 
         else // 살아있는 적 리스트 중 무작위로 반환
             return aliveEnemies[Random.Range(0, aliveEnemies.Count)];
     }
+    private List<Enemy> GetAliveEnemiesList()
+    {
+        List<Enemy> list = new List<Enemy>();
+        for(int i = 0; i<enemies.Count; i++)
+            if(enemies[i].isAlive) 
+                list.Add(enemies[i]);
+        return list;
+    }
+ 
 
     public PlayerCharacter GetRandomCharacter()
     {
         // 살아있는 PC 리스트를 만든다
         List<PlayerCharacter> aliveCharacters = GetAliveCharactersList();
-
         if(aliveCharacters.Count == 0) // 다 죽어서 못 고를 때
             return null; 
         else // 살아있는 PC 리스트 중 무작위로 반환
@@ -92,16 +99,27 @@ public class PlayerManager : MonoBehaviour
         return list;
     }
 
+    public void SelectCharacter(PlayerCharacter pc) // 플레이어 캐릭터 선택. 부활 전용
+    {
+        selectedCharacter = pc;
+        selectSprite.GetComponent<SpriteRenderer>().enabled = true;
+        selectSprite.transform.position = pc.transform.position;
+    }
+    public void CancelCharacterSelect() // 선택 취소
+    {
+        selectedCharacter = null;
+        selectSprite.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     public void SetTarget(Enemy enemy) // 조준
     {
-        targetEnemy = enemy;
+        targetedEnemy = enemy;
         targetSprite.GetComponent<SpriteRenderer>().enabled = true;
         targetSprite.transform.position = enemy.transform.position;
     }
-
     public void CancelTarget() // 조준 취소
     {
-        targetEnemy = null;
+        targetedEnemy = null;
         targetSprite.GetComponent<SpriteRenderer>().enabled = false;
     }
 
@@ -111,9 +129,7 @@ public class PlayerManager : MonoBehaviour
 
         // 부활버튼 활성화/비활성화
         if(reviveTimer > reviveCooltime && GetAliveCharactersList().Count < characters.Count)
-        {
             reviveButton.interactable = true;
-        }
         else 
             reviveButton.interactable = false;
     }

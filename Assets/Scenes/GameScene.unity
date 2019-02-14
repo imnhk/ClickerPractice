@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 17443592}
   - component: {fileID: 17443596}
   - component: {fileID: 17443595}
+  - component: {fileID: 17443597}
   m_Layer: 0
   m_Name: Character (0)
   m_TagString: Untagged
@@ -4880,6 +4881,32 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!61 &17443597
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17443591}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &93350640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,12 +5434,12 @@ MonoBehaviour:
   targetCharacter: {fileID: 0}
   particle: {fileID: 548389986}
   hpText: {fileID: 2125746000}
-  hp: 30
   maxHp: 30
+  hp: 30
   atk: 30
   attackCooltime: 3
   respawnTime: 1.5
-  isAlive: 0
+  isAlive: 1
 --- !u!212 &548389983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10377,6 +10404,7 @@ GameObject:
   - component: {fileID: 772709096}
   - component: {fileID: 772709095}
   - component: {fileID: 772709094}
+  - component: {fileID: 772709098}
   m_Layer: 0
   m_Name: Character (2)
   m_TagString: Untagged
@@ -15132,6 +15160,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &772709098
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772709092}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &792533844
 GameObject:
   m_ObjectHideFlags: 0
@@ -15320,6 +15374,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840240646}
   m_CullTransparentMesh: 0
+--- !u!1 &878916742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 878916744}
+  - component: {fileID: 878916743}
+  m_Layer: 0
+  m_Name: SelectSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &878916743
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878916742}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 872a2f80c7c8e4140a560cb45e8a02b0, type: 3}
+  m_Color: {r: 0, g: 1, b: 0.24731016, a: 0.5372549}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.56, y: 2.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &878916744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878916742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 4.4, z: 5}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940722743
 GameObject:
   m_ObjectHideFlags: 0
@@ -20326,12 +20459,12 @@ MonoBehaviour:
   targetCharacter: {fileID: 0}
   particle: {fileID: 1258944644}
   hpText: {fileID: 840240648}
-  hp: 30
   maxHp: 30
+  hp: 30
   atk: 30
   attackCooltime: 3
   respawnTime: 1.5
-  isAlive: 0
+  isAlive: 1
 --- !u!212 &1258944646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20530,7 +20663,7 @@ Transform:
   - {fileID: 1258944647}
   - {fileID: 2066300274}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440795396
 GameObject:
@@ -20644,11 +20777,13 @@ MonoBehaviour:
   - {fileID: 17443592}
   - {fileID: 2006430680}
   - {fileID: 772709096}
+  selectedCharacter: {fileID: 0}
   enemies:
   - {fileID: 548389982}
   - {fileID: 1258944645}
   - {fileID: 2066300272}
-  targetEnemy: {fileID: 0}
+  targetedEnemy: {fileID: 0}
+  selectSprite: {fileID: 878916742}
   targetSprite: {fileID: 182366026}
   cameraScript: {fileID: 519420030}
   goldText: {fileID: 1440795398}
@@ -20671,7 +20806,7 @@ Transform:
   - {fileID: 2006430677}
   - {fileID: 772709093}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485209340
 GameObject:
@@ -21281,6 +21416,7 @@ GameObject:
   - component: {fileID: 2006430680}
   - component: {fileID: 2006430679}
   - component: {fileID: 2006430678}
+  - component: {fileID: 2006430682}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Untagged
@@ -26036,6 +26172,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2006430682
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006430676}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2066300269
 GameObject:
   m_ObjectHideFlags: 0
@@ -30739,12 +30901,12 @@ MonoBehaviour:
   targetCharacter: {fileID: 0}
   particle: {fileID: 2066300271}
   hpText: {fileID: 1300022905}
-  hp: 30
   maxHp: 30
+  hp: 30
   atk: 30
   attackCooltime: 3
   respawnTime: 1.5
-  isAlive: 0
+  isAlive: 1
 --- !u!212 &2066300273
 SpriteRenderer:
   m_ObjectHideFlags: 0

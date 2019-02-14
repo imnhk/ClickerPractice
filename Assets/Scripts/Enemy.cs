@@ -10,20 +10,15 @@ public class Enemy : MonoBehaviour
     public ParticleSystem particle;
 
     public Text hpText;
-    public int hp;
+
     public int maxHp;
+    public int hp;
     public int atk;
 
     public float attackCooltime;
     private float attackTimer;
     public float respawnTime;
-
     public bool isAlive;
-
-    void Start()
-    {   
-        isAlive = true;
-    }
 
     void Update()
     {
@@ -49,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     void OnMouseDown() // 적을 클릭해서 조준. 다시 클릭하면 취소
     {
-        if(player.targetEnemy==this)
+        if(player.targetedEnemy==this)
             player.CancelTarget();
         else if(isAlive) // 살아있어야 조준 가능
             player.SetTarget(this);
@@ -73,6 +68,7 @@ public class Enemy : MonoBehaviour
             particle.Play();
         }
     }
+
     public void Die()
     {
         // 없애지는 않고 스프라이트만 안 보이게 함
@@ -83,7 +79,7 @@ public class Enemy : MonoBehaviour
         player.CancelTarget(); // 죽으면 조준 취소
     }
 
-    public IEnumerator SpawnIn(float sec)
+    public IEnumerator SpawnIn(float sec) // 몇 초 뒤에 Spawn() 실행
     {
         float timer = 0f;
         while(timer < sec)
@@ -98,7 +94,7 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         hpText.gameObject.SetActive(true);
 
-        maxHp = (int)Random.Range(player.characters[0].atk * 2.1f, player.characters[0].atk * 5.5f); // 이제 플레이어캐릭이 여럿이라... 
+        maxHp = (int)Random.Range(player.characters[0].atk * 2.1f, player.characters[0].atk * 5.5f); // 이제 플레이어캐릭터가 여럿임. 그런데 어차피 공격력은 같음
         hp = maxHp;
 
         isAlive = true;
