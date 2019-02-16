@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public List<PlayerCharacter> characters = new List<PlayerCharacter>();
+    public List<EnemyCharacter> enemies = new List<EnemyCharacter>();
+
     public PlayerCharacter selectedCharacter;
-    public List<Enemy> enemies = new List<Enemy>();
-    public Enemy targetedEnemy;
+    public EnemyCharacter targetedEnemy;
 
     // UI
     public GameObject selectSprite;
@@ -54,6 +55,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Revive()
     {
+        if(selectedCharacter == null) return;
         if(!selectedCharacter.isAlive) // 죽어 있어야 살리지
         {
             selectedCharacter.Spawn();
@@ -61,19 +63,19 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public Enemy GetRandomEnemy()
+    public EnemyCharacter GetRandomEnemy()
     {
         // 살아있는 적 리스트를 만든다
-        List<Enemy> aliveEnemies = GetAliveEnemiesList();
+        List<EnemyCharacter> aliveEnemies = GetAliveEnemiesList();
 
         if(aliveEnemies.Count == 0) // 다 죽어서 못 고를 때
             return null; 
         else // 살아있는 적 리스트 중 무작위로 반환
             return aliveEnemies[Random.Range(0, aliveEnemies.Count)];
     }
-    private List<Enemy> GetAliveEnemiesList()
+    private List<EnemyCharacter> GetAliveEnemiesList()
     {
-        List<Enemy> list = new List<Enemy>();
+        List<EnemyCharacter> list = new List<EnemyCharacter>();
         for(int i = 0; i<enemies.Count; i++)
             if(enemies[i].isAlive) 
                 list.Add(enemies[i]);
@@ -111,7 +113,7 @@ public class PlayerManager : MonoBehaviour
         selectSprite.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public void SetTarget(Enemy enemy) // 조준
+    public void SetTarget(EnemyCharacter enemy) // 조준
     {
         targetedEnemy = enemy;
         targetSprite.GetComponent<SpriteRenderer>().enabled = true;
