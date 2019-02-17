@@ -20,7 +20,7 @@ public class EnemyCharacter : Character
             attackTimer += Time.deltaTime;
             if(attackTimer > attackCooltime)
             {
-                RandomAttack();
+                RandomAttack<PlayerCharacter>();
                 attackTimer = 0;
             }
 
@@ -38,17 +38,6 @@ public class EnemyCharacter : Character
             player.CancelTarget();
         else if(isAlive) // 살아있어야 조준 가능
             player.SetTarget(this);
-    }
-
-    public void RandomAttack()
-    {
-        if(player.GetRandomCharacter() != null) // 무작위 공격
-        {
-            PlayerCharacter randCharacter = player.GetRandomCharacter();
-            randCharacter.Hit(atk);
-            player.cameraScript.ShakeCamera();
-        }
-        else return; // 공격불가
     }
 
     public override void Die()
@@ -69,7 +58,7 @@ public class EnemyCharacter : Character
     }
     public override void Spawn()
     { 
-        base.Spawn();
         maxHp = (int)Random.Range(player.characters[0].atk * 2.1f, player.characters[0].atk * 5.5f);
+        base.Spawn();
     }
 }

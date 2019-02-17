@@ -17,6 +17,7 @@ public abstract class Character : MonoBehaviour
     
     public abstract void OnMouseDown();
 
+
     public virtual void Die()
     {
         // 스프라이트렌터러만 끄는 방식
@@ -41,6 +42,17 @@ public abstract class Character : MonoBehaviour
             hp -= damage;
             particle.Play();
         }
+    }
+
+    public void RandomAttack<T>() where T:Character
+    {
+        if(player.GetRandomCharacter<T>() != null) // 다 죽어 있으면 공격 불가
+        {
+            Character randCharacter = player.GetRandomCharacter<T>();
+            randCharacter.Hit(atk);
+            player.cameraScript.ShakeCamera();
+        }
+        else return;
     }
 
     public virtual void UpdateUI()

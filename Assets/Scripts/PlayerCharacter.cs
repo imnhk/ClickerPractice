@@ -29,20 +29,20 @@ public class PlayerCharacter : Character
             player.targetedEnemy.Hit(atk);
             player.cameraScript.ShakeCamera();
         }
-        else RandomAttack();
+        else RandomAttack<EnemyCharacter>();
     }
-
+    /*
     public void RandomAttack()
     {
-        if(player.GetRandomEnemy() != null) // 무작위 공격
+        if(player.GetRandomCharacter<EnemyCharacter>() != null) // 무작위 공격
         {
-            EnemyCharacter randEnemy = player.GetRandomEnemy();
-            randEnemy.Hit(atk);
+            Character randCharacter = player.GetRandomCharacter<EnemyCharacter>();
+            randCharacter.Hit(atk);
             player.cameraScript.ShakeCamera();
         }
         else return; // 공격불가
     }
-
+    */
     public override void Die()
     {
         base.Die();

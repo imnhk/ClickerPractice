@@ -148,11 +148,11 @@ MonoBehaviour:
   player: {fileID: 1447926613}
   particle: {fileID: 17443596}
   hpText: {fileID: 706281044}
-  atkText: {fileID: 1604455346}
   maxHp: 100
   hp: 100
   atk: 50
   isAlive: 1
+  atkText: {fileID: 1604455346}
 --- !u!212 &17443593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5431,15 +5431,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1447926613}
-  targetCharacter: {fileID: 0}
   particle: {fileID: 548389986}
   hpText: {fileID: 2125746000}
   maxHp: 30
   hp: 30
   atk: 30
+  isAlive: 1
+  targetCharacter: {fileID: 0}
   attackCooltime: 3
   respawnTime: 1.5
-  isAlive: 1
 --- !u!212 &548389983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15107,11 +15107,11 @@ MonoBehaviour:
   player: {fileID: 1447926613}
   particle: {fileID: 772709095}
   hpText: {fileID: 988871066}
-  atkText: {fileID: 676338392}
   maxHp: 100
   hp: 100
   atk: 50
   isAlive: 1
+  atkText: {fileID: 676338392}
 --- !u!212 &772709097
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20456,15 +20456,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1447926613}
-  targetCharacter: {fileID: 0}
   particle: {fileID: 1258944644}
   hpText: {fileID: 840240648}
   maxHp: 30
   hp: 30
   atk: 30
+  isAlive: 1
+  targetCharacter: {fileID: 0}
   attackCooltime: 3
   respawnTime: 1.5
-  isAlive: 1
 --- !u!212 &1258944646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20777,11 +20777,11 @@ MonoBehaviour:
   - {fileID: 17443592}
   - {fileID: 2006430680}
   - {fileID: 772709096}
-  selectedCharacter: {fileID: 0}
   enemies:
   - {fileID: 548389982}
   - {fileID: 1258944645}
   - {fileID: 2066300272}
+  selectedCharacter: {fileID: 0}
   targetedEnemy: {fileID: 0}
   selectSprite: {fileID: 878916742}
   targetSprite: {fileID: 182366026}
@@ -26119,11 +26119,11 @@ MonoBehaviour:
   player: {fileID: 1447926613}
   particle: {fileID: 2006430679}
   hpText: {fileID: 244598661}
-  atkText: {fileID: 277839171}
   maxHp: 100
   hp: 100
   atk: 50
   isAlive: 1
+  atkText: {fileID: 277839171}
 --- !u!212 &2006430681
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30898,15 +30898,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1447926613}
-  targetCharacter: {fileID: 0}
   particle: {fileID: 2066300271}
   hpText: {fileID: 1300022905}
   maxHp: 30
   hp: 30
   atk: 30
+  isAlive: 1
+  targetCharacter: {fileID: 0}
   attackCooltime: 3
   respawnTime: 1.5
-  isAlive: 1
 --- !u!212 &2066300273
 SpriteRenderer:
   m_ObjectHideFlags: 0

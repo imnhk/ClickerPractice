@@ -63,41 +63,30 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public EnemyCharacter GetRandomEnemy()
+    public Character GetRandomCharacter<T>() where T:Character
     {
-        // 살아있는 적 리스트를 만든다
-        List<EnemyCharacter> aliveEnemies = GetAliveEnemiesList();
+        List<Character> aliveCharacters = GetAliveCharacterList<T>();
 
-        if(aliveEnemies.Count == 0) // 다 죽어서 못 고를 때
-            return null; 
-        else // 살아있는 적 리스트 중 무작위로 반환
-            return aliveEnemies[Random.Range(0, aliveEnemies.Count)];
-    }
-    private List<EnemyCharacter> GetAliveEnemiesList()
-    {
-        List<EnemyCharacter> list = new List<EnemyCharacter>();
-        for(int i = 0; i<enemies.Count; i++)
-            if(enemies[i].isAlive) 
-                list.Add(enemies[i]);
-        return list;
-    }
- 
-
-    public PlayerCharacter GetRandomCharacter()
-    {
-        // 살아있는 PC 리스트를 만든다
-        List<PlayerCharacter> aliveCharacters = GetAliveCharactersList();
-        if(aliveCharacters.Count == 0) // 다 죽어서 못 고를 때
-            return null; 
-        else // 살아있는 PC 리스트 중 무작위로 반환
+        if(aliveCharacters.Count==0)
+            return null;
+        else
             return aliveCharacters[Random.Range(0, aliveCharacters.Count)];
     }
-    private List<PlayerCharacter> GetAliveCharactersList()
+    private List<Character> GetAliveCharacterList<T>() where T:Character
     {
-        List<PlayerCharacter> list = new List<PlayerCharacter>();
-        for(int i = 0; i<characters.Count; i++)
-            if(characters[i].isAlive) 
-                list.Add(characters[i]);
+        List<Character> list = new List<Character>();
+        if(typeof(T)==typeof(PlayerCharacter))
+        {
+            for(int i = 0; i<characters.Count; i++)
+                if(characters[i].isAlive) 
+                    list.Add(characters[i]);
+        }
+        else if(typeof(T)==typeof(EnemyCharacter))
+        {
+            for(int i = 0; i<enemies.Count; i++)
+                if(enemies[i].isAlive) 
+                    list.Add(enemies[i]);
+        }
         return list;
     }
 
@@ -130,7 +119,7 @@ public class PlayerManager : MonoBehaviour
         goldText.text = "Gold: " + gold;
 
         // 부활버튼 활성화/비활성화
-        if(reviveTimer > reviveCooltime && GetAliveCharactersList().Count < characters.Count)
+        if(reviveTimer > reviveCooltime && GetAliveCharacterList<PlayerCharacter>().Count < characters.Count)
             reviveButton.interactable = true;
         else 
             reviveButton.interactable = false;
